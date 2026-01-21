@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Matemática I - Guia Interativo</title>
+    <style>
+        :root {
+            --primary: #00D4FF;
+            --primary-dark: #0099CC;
+            --bg: #0a0a0a;
+            --surface: #1a1a1a;
+            --surface-light: #2a2a2a;
+            --text: #e0e0e0;
+            --text-secondary: #999999;
+            --border: #333333;
+            --accent-1: #FF6B6B;
+            --accent-2: #FFB347;
+            --accent-3: #52D989;
+            --accent-4: #A78BFA;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+        }
+
+        header {
+            background: linear-gradient(135deg, #001a33 0%, #003366 100%);
+            color: var(--primary);
+            padding: 35px 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 2.3em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 0.95em;
+            opacity: 0.9;
+            color: #b0e0ff;
+        }
+
+        nav {
+            background-color: var(--surface);
+            padding: 10px 20px;
+            box-shadow: 0 2px 8px rgba(0, 212, 255, 0.1);
+            top: 110px;
+            z-index: 90;
+            border-bottom: 2px solid var(--border);
+            overflow-x: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            max-width: 1400px;
+            margin: 0 auto;
+            justify-content: center;
+        }
+
+        nav button {
+            background: transparent;
+            border: 2px solid var(--primary-dark);
+            color: var(--primary);
+            padding: 6px 11px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.75em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        nav button:hover {
+            background-color: var(--primary-dark);
+            color: #000;
+        }
+
+        nav button.active {
+            background-color: var(--primary);
+            color: #000;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .topic-card {
+            background-color: var(--surface);
+            border-radius: 8px;
+            padding: 32px;
+            margin-bottom: 30px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+
+        .topic-card.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .topic-card h2 {
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-size: 2.2em;
+            border-bottom: 3px solid var(--primary-dark);
+            padding-bottom: 15px;
+        }
+
+        .section-title {
+            color: var(--accent-2);
+            font-size: 1.4em;
+            margin-top: 30px;
+            margin-bottom: 18px;
+            font-weight: 700;
+        }
+
+        /* Blocos principais */
+        .block {
+            background-color: rgba(0, 212, 255, 0.06);
+            border-left: 5px solid var(--primary);
+            padding: 22px;
+            margin: 22px 0;
+            border-radius: 6px;
+        }
+
+        .block-title {
+            color: var(--primary);
+            font-size: 1.15em;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .block p, .block ul, .block li {
+            color: var(--text);
+            font-size: 0.95em;
+            line-height: 1.8;
+        }
+
+        .block ul {
+            margin-left: 25px;
+            margin-top: 10px;
+        }
+
+        .block li {
+            margin-bottom: 10px;
+        }
+
+        /* Cores diferentes para blocos */
+        .block-what {
+            background-color: rgba(0, 212, 255, 0.08);
+            border-left-color: var(--primary);
+        }
+
+        .block-why {
+            background-color: rgba(82, 217, 137, 0.08);
+            border-left-color: var(--accent-3);
+        }
+
+        .block-why .block-title {
+            color: var(--accent-3);
+        }
+
+        .block-key {
+            background-color: rgba(167, 139, 250, 0.08);
+            border-left-color: var(--accent-4);
+        }
+
+        .block-key .block-title {
+            color: var(--accent-4);
+        }
+
+        .block-example {
+            background-color: rgba(255, 179, 71, 0.08);
+            border-left-color: var(--accent-2);
+        }
+
+        .block-example .block-title {
+            color: var(--accent-2);
+        }
+
+        /* Fórmula/Código */
+        .formula-box {
+            background-color: var(--surface-light);
+            border: 2px solid var(--primary-dark);
+            padding: 18px;
+            margin: 16px 0;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+            overflow-x: auto;
+            font-size: 0.9em;
+            line-height: 2;
+        }
+
+        /* Passos */
+        .steps-box {
+            background-color: var(--surface-light);
+            border-left: 5px solid var(--accent-1);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .steps-box ol {
+            margin-left: 25px;
+            margin-top: 12px;
+        }
+
+        .steps-box li {
+            margin-bottom: 14px;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        .steps-box strong {
+            color: var(--accent-2);
+        }
+
+        /* Tabela de propriedades */
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+
+        .property-card {
+            background-color: var(--surface-light);
+            border-left: 4px solid var(--primary);
+            padding: 16px;
+            border-radius: 5px;
+        }
+
+        .property-card strong {
+            color: var(--primary);
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1em;
+        }
+
+        .property-card p {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            margin: 0;
+        }
+
+        /* Tabela comparativa */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: var(--surface-light);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .comparison-table th {
+            background-color: var(--primary-dark);
+            color: var(--primary);
+            padding: 14px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .comparison-table td {
+            padding: 12px 14px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9em;
+            background-color: var(--surface);
+        }
+
+        .comparison-table tr:hover {
+            background-color: var(--surface-light);
+        }
+
+        /* Dica */
+        .tip-box {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.08), rgba(255, 179, 71, 0.08));
+            border-left: 5px solid var(--accent-1);
+            padding: 18px;
+            margin: 20px 0;
+            border-radius: 6px;
+        }
+
+        .tip-box strong {
+            color: var(--accent-1);
+            font-size: 1.05em;
+        }
+
+        .tip-box ul {
+            margin-left: 22px;
+            margin-top: 10px;
+        }
+
+        .tip-box li {
+            margin-bottom: 8px;
+            color: var(--text);
+            font-size: 0.9em;
+        }
+
+        /* Exemplos resolvidos - seção visual */
+        .example-header {
+            color: var(--accent-2);
+            font-weight: 700;
+            font-size: 1.05em;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 8px;
+            margin-top: 12px;
+        }
+
+        .answer {
+            color: var(--accent-3);
+            font-weight: 600;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        .visual-diagram {
+            background-color: var(--surface-light);
+            border: 2px dashed var(--primary);
+            padding: 18px;
+            margin: 16px 0;
+            border-radius: 5px;
+            text-align: center;
+            font-family: monospace;
+            color: var(--primary);
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.6;
+        }
+
+        footer {
+            background-color: #001a33;
+            color: var(--primary);
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            border-top: 2px solid var(--border);
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 6px 0;
+            opacity: 0.85;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 1.8em; }
+            nav button { font-size: 0.65em; padding: 5px 8px; }
+            .container { padding: 20px 10px; }
+            .topic-card { padding: 20px; }
+            .section-title { font-size: 1.2em; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>📊 Análise Matemática I</h1>
+        <p>Guia Interativo Completo • Baseado em Exames Reais • Explicações Intuitivas • Martim Dias</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><button class="nav-btn active" data-topic="home">Inicio</button></li>
+            <li><button class="nav-btn" data-topic="conjuntos">Conjuntos</button></li>
+            <li><button class="nav-btn" data-topic="funcoes">Funções</button></li>
+            <li><button class="nav-btn" data-topic="limites">Limites</button></li>
+            <li><button class="nav-btn" data-topic="continuidade">Continuidade</button></li>
+            <li><button class="nav-btn" data-topic="derivadas">Derivadas</button></li>
+            <li><button class="nav-btn" data-topic="concavidade">Concavidade</button></li>
+            <li><button class="nav-btn" data-topic="taylor">Taylor</button></li>
+            <li><button class="nav-btn" data-topic="primitivas">Primitivas</button></li>
+            <li><button class="nav-btn" data-topic="integrais">Integrais</button></li>
+            <li><button class="nav-btn" data-topic="trig">Trigonometria</button></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+
+        <!-- HOME -->
+        <div id="home" class="topic-card active">
+            <h2>🚀 Bem-vindo ao Guia Completo de Análise Matemática I</h2>
+            
+            <div class="block block-what">
+                <div class="block-title">📖 Como Usar Este Guia</div>
+                <p>Este guia está organizado em <strong>11 tópicos principais</strong>, cada um com:</p>
+                <ul>
+                    <li><strong>O QUÊ É?</strong> - Explicação simples e intuitiva</li>
+                    <li><strong>PARA QUÊ SERVE?</strong> - Aplicações práticas e exemplos reais</li>
+                    <li><strong>CONCEITOS-CHAVE</strong> - O que precisas memorizar</li>
+                    <li><strong>EXEMPLO RESOLVIDO</strong> - Passo-a-passo completo com fórmulas</li>
+                    <li><strong>DICAS PARA EXAME</strong> - Estratégias práticas</li>
+                </ul>
+            </div>
+
+            <div class="block block-why">
+                <div class="block-title">✅ Tópicos Cobertos (Baseado em Exames Reais)</div>
+                <ul>
+                    <li><strong>Conjuntos:</strong> Intervalos, propriedades, topologia</li>
+                    <li><strong>Funções:</strong> Domínio, paridade, composição</li>
+                    <li><strong>Limites:</strong> Técnicas, notáveis, formas indeterminadas</li>
+                    <li><strong>Continuidade:</strong> Bolzano, descontinuidades, parâmetros</li>
+                    <li><strong>Derivadas:</strong> Regras, monotonia, extremos, quadros</li>
+                    <li><strong>Concavidade:</strong> Segunda derivada, inflexão</li>
+                    <li><strong>Taylor:</strong> Fórmula, cálculo, limites</li>
+                    <li><strong>Primitivas:</strong> Imediatas, substituição, partes</li>
+                    <li><strong>Integrais:</strong> Definidos, áreas, propriedades</li>
+                    <li><strong>Trigonometria:</strong> Inversas, domínios, derivadas, primitivas</li>
+                </ul>
+            </div>
+
+            <p style="margin-top: 30px; text-align: center; color: var(--text-secondary); font-size: 0.9em;">
+                👉 Clica nos botões acima para começar! Recomendamos seguir a ordem dos tópicos.
+            </p>
+        </div>
+
+        <!-- CONJUNTOS -->
+        <div id="conjuntos" class="topic-card">
+            <h2>📍 Conjuntos e Intervalos</h2>
+
+            <div class="block block-what">
+                <div class="block-title">🔍 O QUÊ É?</div>
+                <p>Um conjunto é uma coleção de números. A matemática usa <strong>intervalos</strong> para descrever estes grupos de forma compacta.</p>
+                <p style="margin-top: 12px;"><strong>Analogia:</strong> Se disser "moradas entre 10 e 20", estou a descrever um conjunto de números. Os matemáticos escrevem isto como [10, 20].</p>
+            </div>
+
+            <div class="section-title">📝 Notação de Intervalos</div>
+
+            <div class="properties-grid">
+                <div class="property-card">
+                    <strong>[1, 5]</strong>
+                    <p>Fechado • Inclui 1 e 5 • Números de 1 até 5</p>
+                </div>
+                <div class="property-card">
+                    <strong>]1, 5[ ou (1, 5)</strong>
+                    <p>Aberto • Exclui 1 e 5 • Números entre 1 e 5</p>
+                </div>
+                <div class="property-card">
+                    <strong>[1, 5[</strong>
+                    <p>Misto • Inclui 1, exclui 5 • Semi-aberto</p>
+                </div>
+                <div class="property-card">
+                    <strong>]-∞, 10]</strong>
+                    <p>Ilimitado à esquerda • Todos até 10 • Inclui 10</p>
+                </div>
+                <div class="property-card">
+                    <strong>]5, +∞[</strong>
+                    <p>Ilimitado à direita • Todos maiores que 5 • Exclui 5</p>
+                </div>
+                <div class="property-card">
+                    <strong>ℝ</strong>
+                    <p>Reais • Todos os números • Infinito em ambos lados</p>
+                </div>
+            </div>
+
+            <div class="block block-why">
+                <div class="block-title">✅ PARA QUÊ SERVE?</div>
+                <p>Em exames, conjuntos aparecem frequentemente porque:</p>
+                <ul>
+                    <li>Define o <strong>domínio</strong> (onde função funciona)</li>
+                    <li>Especifica <strong>intervalos de estudo</strong> (monotonia, concavidade)</li>
+                    <li>Questões Grupo I pedem classificação de propriedades</li>
+                    <li>Essencial para <strong>Théorema de Bolzano</strong></li>
+                </ul>
+            </div>
+
+            <div class="section-title">🎯 Propriedades Importantes (Exame)</div>
+
+            <div class="block block-key">
+                <div class="block-title">Conceitos-Chave</div>
+                <ul>
+                    <li><strong>Fechado:</strong> Tem os extremos incluídos. [a, b] é fechado.</li>
+                    <li><strong>Aberto:</strong> Não inclui extremos. ]a, b[ é aberto.</li>
+                    <li><strong>Limitado:</strong> Tem máximo e mínimo finitos.</li>
+                    <li><strong>Não limitado:</strong> Estica para infinito. ]-∞, 5] é não limitado.</li>
+                    <li><strong>Ponto isolado:</strong> Número sozinho, separado. Ex: {-1} ∪ ]3, 5]</li>
+                    <li><strong>Pontos de acumulação D':</strong> Pontos que consegues aproximar infinitamente.</li>
+                    <li><strong>Fronteira fr(D):</strong> Os "limites" do conjunto.</li>
+                </ul>
+            </div>
+
+            <div class="section-title">📝 Exemplo Resolvido de Exame</div>
+
+            <div class="block block-example">
+                <div class="example-header">Classificar Conjunto - Análise Completa</div>
+                
+                <div class="question">Questão: Classifique D = {-1} ∪ ]3, e] quanto a: fechado? limitado? isolado? Mínimo? Máximo?</div>
+
+                <div class="steps-box">
+                    <strong>Passo 1: VISUALIZAR O CONJUNTO</strong>
+                    <div class="visual-diagram">
+Reta numérica:
+
+●           ○━━━━━━━●
+-1   0   1   2   3   e≈2.718
+
+-1 = ponto isolado (sozinho)
+]3, e] = intervalo de 3 até e
+        3 não incluído (aberto)
+        e incluído (fechado)
+                    </div>
+
+                    <ol>
+                        <li>
+                            <strong>É FECHADO?</strong>
+                            <p>O intervalo ]3, e] tem 3 aberto (não incluído).</p>
+                            <p>Logo, não é fechado como conjunto.</p>
+                            <p style="color: var(--accent-3); margin-top: 8px;">✗ NÃO FECHADO</p>
+                        </li>
+                        <li>
+                            <strong>É LIMITADO?</strong>
+                            <p>Mínimo: -1 ✓</p>
+                            <p>Máximo: e ≈ 2.718 ✓</p>
+                            <p>Ambos existem e são finitos.</p>
+                            <p style="color: var(--accent-3); margin-top: 8px;">✓ SIM, LIMITADO</p>
+                        </li>
+                        <li>
+                            <strong>TEM PONTO ISOLADO?</strong>
+                            <p>-1 está completamente sozinho, separado de ]3, e].</p>
+                            <p>Não consegues aproximar-te de -1 vindo de dentro do intervalo.</p>
+                            <p style="color: var(--accent-3); margin-top: 8px;">✓ SIM, -1 É ISOLADO</p>
+                        </li>
+                        <li>
+                            <strong>MÍNIMO E MÁXIMO?</strong>
+                            <p>Mínimo: -1 (existe e pertence ao conjunto)</p>
+                            <p>Máximo: e (existe e pertence ao conjunto)</p>
+                            <p style="color: var(--accent-3); margin-top: 8px;">✓ AMBOS EXISTEM</p>
+                        </li>
+                        <li>
+                            <strong>PONTOS DE ACUMULAÇÃO D'?</strong>
+                            <p>São D' = [3, e] (os extremos do intervalo).</p>
+                            <p>-1 NÃO é ponto de acumulação (isolado).</p>
+                            <p style="color: var(--accent-3); margin-top: 8px;">D' = [3, e]</p>
+                        </li>
+                        <li>
+                            <strong>FRONTEIRA fr(D)?</strong>
+                            <p>fr(D) = {-1} ∪ [3, e] (os "limites")</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA FINAL:</div>
+                <p style="color: var(--accent-3); margin-left: 12px;">
+                    • Não fechado (por causa de ]3)<br>
+                    • Limitado<br>
+                    • Tem ponto isolado (-1)<br>
+                    • Mínimo: -1, Máximo: e<br>
+                    • D' = [3, e]<br>
+                    • fr(D) = {-1} ∪ [3, e]
+                </p>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 DICAS PARA EXAME</strong>
+                <ul>
+                    <li><strong>SEMPRE desenha:</strong> A reta numérica esclarece tudo</li>
+                    <li><strong>Cuidado com ] vs [:</strong> ] = aberto, [ = fechado</li>
+                    <li><strong>Isolado = sozinho:</strong> Não consegues aproximar-te por dentro</li>
+                    <li><strong>Memoriza:</strong> Fechado + Limitado = Compacto (importante teorema)</li>
+                    <li><strong>Questões Grupo I:</strong> Aparecem sempre propriedades de conjuntos</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- FUNÇÕES -->
+        <div id="funcoes" class="topic-card">
+            <h2>🔍 Funções: Domínio, Paridade e Propriedades</h2>
+
+            <div class="block block-what">
+                <div class="block-title">🔍 O QUÊ É?</div>
+                <p>Uma função é uma máquina: tu dás um número (x), ela devolve outro número (y = f(x)).</p>
+                <p style="margin-top: 12px;"><strong>Importante:</strong> Nem todos os números de entrada funcionam. O <strong>domínio</strong> diz quais trabalham.</p>
+            </div>
+
+            <div class="section-title">📍 Como Encontrar o Domínio?</div>
+
+            <div class="block block-key">
+                <div class="block-title">Restrições Comuns (EXAME)</div>
+                <ul>
+                    <li><strong>1) Denominador ≠ 0:</strong> Não podes dividir por zero. Se tem f(x)/g(x), então g(x) ≠ 0</li>
+                    <li><strong>2) Raiz par ≥ 0:</strong> √(f(x)) exige f(x) ≥ 0</li>
+                    <li><strong>3) Logaritmo > 0:</strong> ln(f(x)) exige f(x) > 0</li>
+                    <li><strong>4) Arcsin/Arccos ∈ [-1, 1]:</strong> arcsin(f(x)) exige -1 ≤ f(x) ≤ 1</li>
+                    <li><strong>5) Arctg sem restrição:</strong> arctg(f(x)) funciona para TODO o f(x)</li>
+                </ul>
+            </div>
+
+            <div class="section-title">📝 Exemplo Resolvido: Domínio com Arccos</div>
+
+            <div class="block block-example">
+                <div class="example-header">Encontrar Domínio de f(x) = arccos(x/(1-x))</div>
+                
+                <div class="question">Questão: Encontra o domínio de f(x) = arccos(x/(1-x))</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Restrição 1: Denominador ≠ 0</strong>
+                            <div class="formula-box">
+1 - x ≠ 0
+x ≠ 1
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Restrição 2: Arccos exige -1 ≤ f(x) ≤ 1</strong>
+                            <div class="formula-box">
+-1 ≤ x/(1-x) ≤ 1
+
+Isto é DOIS inequações: resolvem-se separadamente!
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Parte A: x/(1-x) ≥ -1</strong>
+                            <div class="formula-box">
+x/(1-x) ≥ -1
+x/(1-x) + 1 ≥ 0
+[x + (1-x)]/(1-x) ≥ 0
+1/(1-x) ≥ 0
+
+Como 1 > 0, precisamos 1-x > 0
+x < 1
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Parte B: x/(1-x) ≤ 1</strong>
+                            <div class="formula-box">
+x/(1-x) ≤ 1
+x/(1-x) - 1 ≤ 0
+[x - (1-x)]/(1-x) ≤ 0
+(2x - 1)/(1-x) ≤ 0
+
+Zeros: 2x - 1 = 0 ⟹ x = 1/2
+       1 - x = 0 ⟹ x = 1
+
+Análise de sinal:
+  x    | -∞ ... 1/2 ... 1 ... +∞
+2x-1  | (-) ... 0 ... (+) ... (+)
+1-x   | (+) ... (+) ... (+) ... (-)
+Q     | (-) ... 0 ... (+) ... (-)
+
+(2x-1)/(1-x) ≤ 0 quando: x ≤ 1/2 ou x > 1
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Intersecção de todas restrições:</strong>
+                            <div class="formula-box">
+x < 1  (da restrição 1)
+INTERSECÇÃO
+(x ≤ 1/2 ou x > 1)  (da restrição 2)
+
+Resultado: x ≤ 1/2
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA FINAL:</div>
+                <p style="color: var(--accent-3); margin-left: 12px;">Domínio = (-∞, 1/2]</p>
+            </div>
+
+            <div class="section-title">🎯 Paridade (Grupo I Exames)</div>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Tipo</th>
+                    <th>Condição</th>
+                    <th>Simetria no Gráfico</th>
+                </tr>
+                <tr>
+                    <td><strong>PAR</strong></td>
+                    <td>f(-x) = f(x)</td>
+                    <td>Simétrica em relação ao eixo Y</td>
+                </tr>
+                <tr>
+                    <td><strong>ÍMPAR</strong></td>
+                    <td>f(-x) = -f(x)</td>
+                    <td>Simétrica em relação à origem (0,0)</td>
+                </tr>
+                <tr>
+                    <td><strong>NEM/NEM</strong></td>
+                    <td>Não satisfaz nenhuma</td>
+                    <td>Sem simetria especial</td>
+                </tr>
+            </table>
+
+            <div class="tip-box">
+                <strong>💡 DICAS PARA EXAME</strong>
+                <ul>
+                    <li>Domínio aparece em <strong>Grupo I (escolha múltipla)</strong> - é direto!</li>
+                    <li>Memoriza restrições: denominador, raiz, log, arcsin/arccos</li>
+                    <li>Para arcsin/arccos: SEMPRE -1 ≤ f(x) ≤ 1</li>
+                    <li>Para arctg: SEM restrição</li>
+                    <li>Paridade é testada frequentemente - verifica com f(1) e f(-1)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- LIMITES -->
+        <div id="limites" class="topic-card">
+            <h2>🎯 Limites</h2>
+
+            <div class="block block-what">
+                <div class="block-title">🔍 O QUÊ É?</div>
+                <p>Um limite descreve o que acontece a uma função quando te aproximas de um número (sem necessariamente chegar lá).</p>
+                <p style="margin-top: 12px;"><strong>Analogia:</strong> Se caminhares em direção a um prédio, o limite é o que vês quando estás muito perto, mesmo que não entres.</p>
+                <p style="margin-top: 12px;">Notação: <strong>lim(x→2) f(x)</strong> = "limite de f(x) quando x tende para 2"</p>
+            </div>
+
+            <div class="block block-why">
+                <div class="block-title">✅ PARA QUÊ SERVE?</div>
+                <ul>
+                    <li><strong>Base de tudo:</strong> Continuidade, derivadas e integrais usam limites</li>
+                    <li><strong>Verificar continuidade:</strong> Se limite = valor da função, é contínua</li>
+                    <li><strong>Comportamento no infinito:</strong> Para onde vai a função quando x → ±∞?</li>
+                    <li><strong>Assintotas:</strong> Linhas que função nunca toca mas aproxima-se</li>
+                    <li><strong>Aparece em MUITAS questões de exame</strong></li>
+                </ul>
+            </div>
+
+            <div class="section-title">📋 Técnicas de Cálculo (em ordem de tentativa)</div>
+
+            <div class="properties-grid">
+                <div class="property-card">
+                    <strong>1º TENTATIVA</strong>
+                    <p>Substituição Direta</p>
+                </div>
+                <div class="property-card">
+                    <strong>Se der 0/0</strong>
+                    <p>Factoriza ou Simplifica</p>
+                </div>
+                <div class="property-card">
+                    <strong>Se der ∞/∞</strong>
+                    <p>Divide pelo Maior Grau</p>
+                </div>
+                <div class="property-card">
+                    <strong>Se Tiver Limites Notáveis</strong>
+                    <p>Usa as Fórmulas</p>
+                </div>
+            </div>
+
+            <div class="section-title">📝 Exemplo 1: Substituição Direta (70% dos Exames!)</div>
+
+            <div class="block block-example">
+                <div class="example-header">Limite Simples</div>
+                
+                <div class="question">Questão: Calcula lim(x→2) (3x² - 5x + 1)</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Tenta substituição direta:</strong>
+                            <div class="formula-box">
+Substitui x por 2:
+= 3(2)² - 5(2) + 1
+= 3·4 - 10 + 1
+= 12 - 10 + 1
+= 3
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Resultado é um número?</strong>
+                            <p>SIM! Então esse é o limite.</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA: lim(x→2) = 3</div>
+            </div>
+
+            <div class="section-title">📝 Exemplo 2: Forma Indeterminada 0/0</div>
+
+            <div class="block block-example">
+                <div class="example-header">Limite com Factorização</div>
+                
+                <div class="question">Questão: Calcula lim(x→1) [(x² - 1)/(x - 1)]</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Tenta substituição:</strong>
+                            <div class="formula-box">
+= (1² - 1)/(1 - 1)
+= 0/0
+❌ Indeterminado! Continua...
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Factoriza numerador (diferença de quadrados):</strong>
+                            <div class="formula-box">
+x² - 1 = (x - 1)(x + 1)
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Substitui e simplifica:</strong>
+                            <div class="formula-box">
+(x² - 1)/(x - 1) = [(x-1)(x+1)]/(x-1)
+                  = (x + 1)
+
+Cancela o (x-1)!
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Agora substitui x = 1:</strong>
+                            <div class="formula-box">
+lim(x→1) (x + 1) = 1 + 1 = 2
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA: lim(x→1) = 2</div>
+            </div>
+
+            <div class="section-title">📝 Exemplo 3: Limite Lateral (Grupo I Exames)</div>
+
+            <div class="block block-example">
+                <div class="example-header">Função Definida por Ramos</div>
+                
+                <div class="question">Questão: Calcula lim(x→0) g(x) onde:
+                <br>g(x) = { 3x - 8, se x ≤ 0
+                <br>       { sin(2x)/x, se x > 0</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Limites laterais (aproximas de dois lados):</strong>
+                            <div class="formula-box">
+PELA ESQUERDA (x → 0⁻):
+lim(x→0⁻) = 3(0) - 8 = -8
+
+PELA DIREITA (x → 0⁺):
+lim(x→0⁺) sin(2x)/x
+
+Usa limite notável: sin(u)/u = 1
+= lim sin(2x)/(2x) · 2
+= 1 · 2 = 2
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Compare os limites:</strong>
+                            <p>Pela esquerda: -8</p>
+                            <p>Pela direita: 2</p>
+                            <p>São diferentes!</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✗ RESPOSTA: Limite NÃO existe em x = 0 (limites laterais diferentes)</div>
+            </div>
+
+            <div class="section-title">🔑 Limites Notáveis (MEMORIZA!)</div>
+
+            <div class="formula-box">
+lim(x→0) [sin(x)/x] = 1
+
+lim(x→0) [(1-cos(x))/x²] = 1/2
+
+lim(x→0) [(e^x - 1)/x] = 1
+
+lim(x→+∞) [1 + 1/x]^x = e ≈ 2.718
+
+REGRA DO MAIOR GRAU (para ±∞):
+• Grau num > grau den ⟹ ±∞
+• Grau num = grau den ⟹ razão dos coeficientes
+• Grau num < grau den ⟹ 0
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 DICAS PARA EXAME</strong>
+                <ul>
+                    <li><strong>70% resolvem por substituição!</strong> Começa sempre por aí</li>
+                    <li>Se der 0/0, procura <strong>cancelar (x - a)</strong></li>
+                    <li>Se der ∞/∞, <strong>divide tudo pelo maior grau</strong></li>
+                    <li>Limites laterais diferentes = Limite não existe</li>
+                    <li>Memoriza os 4 limites notáveis - aparecem constantemente</li>
+                    <li>Questão de Grupo I: teste as opções se ficar preso</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CONTINUIDADE -->
+        <div id="continuidade" class="topic-card">
+            <h2>🔗 Continuidade</h2>
+
+            <div class="block block-what">
+                <div class="block-title">🔍 O QUÊ É?</div>
+                <p>Uma função é contínua num ponto se o gráfico não tem "saltos" ou "furos" nesse ponto. Podes desenhar a função sem levantar a caneta.</p>
+                <p style="margin-top: 12px;"><strong>Analogia:</strong> Se caminhar és contínuo. Se saltares (teleporte), não és contínuo.</p>
+            </div>
+
+            <div class="block block-why">
+                <div class="block-title">✅ PARA QUÊ SERVE?</div>
+                <ul>
+                    <li><strong>Théorema de Bolzano:</strong> Aplica apenas se função contínua</li>
+                    <li><strong>Derivabilidade:</strong> Sem continuidade, não há derivada</li>
+                    <li><strong>Aplicar teoremas:</strong> Muitos exigem continuidade</li>
+                    <li><strong>Questões Grupo II:</strong> "Prove continuidade" ou "Encontre k para continuidade"</li>
+                </ul>
+            </div>
+
+            <div class="section-title">📋 Definição Formal (Simplificada)</div>
+
+            <div class="block block-key">
+                <div class="block-title">f é contínua em x = a se TRÊS coisas acontecem:</div>
+                <ol style="margin-left: 25px; margin-top: 12px;">
+                    <li><strong>f(a) existe</strong> (o ponto tem valor definido)</li>
+                    <li><strong>lim(x→a) f(x) existe</strong> (o limite é um número)</li>
+                    <li><strong>lim(x→a) f(x) = f(a)</strong> (o limite = valor da função)</li>
+                </ol>
+            </div>
+
+            <div class="section-title">📝 Exemplo: Verificar Continuidade</div>
+
+            <div class="block block-example">
+                <div class="example-header">Teste de Continuidade</div>
+                
+                <div class="question">Questão: Verifica se f(x) = (x² - 4)/(x - 2) é contínua em x = 2</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Passo 1: f(2) existe?</strong>
+                            <div class="formula-box">
+f(2) = (2² - 4)/(2 - 2)
+     = (4 - 4)/0
+     = 0/0
+
+NÃO EXISTE! ✗
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Passo 2: lim(x→2) f(x) existe?</strong>
+                            <div class="formula-box">
+lim(x→2) [(x² - 4)/(x - 2)]
+= lim(x→2) [(x-2)(x+2)/(x-2)]    [factoriza]
+= lim(x→2) (x + 2)                [cancela (x-2)]
+= 2 + 2
+= 4
+
+EXISTE! ✓
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Passo 3: Compara f(2) com limite</strong>
+                            <p>f(2) não existe, mas limite = 4</p>
+                            <p>Não satisfaz f(2) = lim</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✗ RESPOSTA: f NÃO é contínua em x = 2 (há um "furo" no ponto (2, 4))</div>
+            </div>
+
+            <div class="section-title">🎯 Théorema de Bolzano (MUITO IMPORTANTE!)</div>
+
+            <div class="block block-key">
+                <div class="block-title">Bolzano em Linguagem Simples</div>
+                <p style="margin-bottom: 12px;"><strong>Se:</strong></p>
+                <ul style="margin-bottom: 12px;">
+                    <li>f é contínua em [a, b], E</li>
+                    <li>f(a) e f(b) têm sinais contrários</li>
+                </ul>
+                <p><strong>Então:</strong> Existe c ∈ ]a, b[ tal que f(c) = 0</p>
+                <p style="margin-top: 12px; color: var(--text-secondary);">Em palavras: Se função contínua passa de negativo para positivo, tem que passar por zero!</p>
+            </div>
+
+            <div class="section-title">📝 Exemplo: Bolzano</div>
+
+            <div class="block block-example">
+                <div class="example-header">Provar Existência de Zero</div>
+                
+                <div class="question">Questão: Prova que f(x) = x³ - 2x - 5 tem um zero em ]2, 3[</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>f é contínua em [2, 3]?</strong>
+                            <p>É um polinómio, logo contínua em todo o ℝ.</p>
+                            <p style="color: var(--accent-3); margin-top: 8px;">✓ Sim</p>
+                        </li>
+
+                        <li>
+                            <strong>Calcula f(2):</strong>
+                            <div class="formula-box">
+f(2) = 2³ - 2(2) - 5
+     = 8 - 4 - 5
+     = -1  (NEGATIVO)
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Calcula f(3):</strong>
+                            <div class="formula-box">
+f(3) = 3³ - 2(3) - 5
+     = 27 - 6 - 5
+     = 16  (POSITIVO)
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Verifica sinais:</strong>
+                            <p>f(2) = -1 < 0  ✗</p>
+                            <p>f(3) = 16 > 0  ✓</p>
+                            <p>Sinais CONTRÁRIOS! ✓✓✓</p>
+                        </li>
+
+                        <li>
+                            <strong>Conclusão por Bolzano:</strong>
+                            <p>Existe c ∈ ]2, 3[ tal que f(c) = 0</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ PROVADO: f tem um zero em ]2, 3[</div>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 DICAS PARA EXAME</strong>
+                <ul>
+                    <li>Para provar continuidade, <strong>sempre verifica os 3 passos em ordem</strong></li>
+                    <li>Bolzano é usado <strong>exclusivamente para provar existência de zeros</strong></li>
+                    <li>Se der 0/0, o ponto é removível (pode "consertar")</li>
+                    <li>Se limite = ±∞, há assintota vertical (descontinuidade essencial)</li>
+                    <li>Perguntas: "Encontre k para continuidade" → Iguala limite a f(a)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DERIVADAS -->
+        <div id="derivadas" class="topic-card">
+            <h2>📈 Derivadas e Monotonia</h2>
+
+            <div class="block block-what">
+                <div class="block-title">🔍 O QUÊ É?</div>
+                <p>A derivada mede a "velocidade de mudança" de uma função. Se pensares num gráfico, a derivada é a <strong>inclinação (slope)</strong> da reta tangente naquele ponto.</p>
+                <p style="margin-top: 12px;"><strong>Analogia:</strong> Se o gráfico for uma estrada de montanha, a derivada diz como de "steep" (inclinada) está naquele ponto específico.</p>
+                <p style="margin-top: 12px;">Notação: <strong>f'(x)</strong> ou <strong>df/dx</strong></p>
+            </div>
+
+            <div class="block block-why">
+                <div class="block-title">✅ PARA QUÊ SERVE?</div>
+                <ul>
+                    <li><strong>Monotonia:</strong> f'(x) > 0 = função cresce | f'(x) < 0 = diminui</li>
+                    <li><strong>Extremos:</strong> Máximos e mínimos aparecem onde f' = 0</li>
+                    <li><strong>Forma da curva:</strong> Segunda derivada f'' diz se "curva para cima" ou "para baixo"</li>
+                    <li><strong>Física:</strong> Velocidade = derivada de posição</li>
+                    <li><strong>Economia:</strong> Lucro máximo encontra-se com derivadas</li>
+                </ul>
+            </div>
+
+            <div class="section-title">🔑 Regras de Derivação (MEMORIZA!)</div>
+
+            <div class="formula-box">
+[x^n]' = n·x^(n-1)
+
+[e^x]' = e^x
+
+[ln(x)]' = 1/x
+
+[sin(x)]' = cos(x)
+
+[cos(x)]' = -sin(x)
+
+[f(x) + g(x)]' = f'(x) + g'(x)
+
+[f(x)·g(x)]' = f'(x)·g(x) + f(x)·g'(x)    [PRODUTO]
+
+[f(x)/g(x)]' = [f'(x)·g(x) - f(x)·g'(x)] / [g(x)]²    [QUOCIENTE]
+
+[f(g(x))]' = f'(g(x))·g'(x)    [CADEIA]
+            </div>
+
+            <div class="section-title">📝 Exemplo 1: Derivada Simples</div>
+
+            <div class="block block-example">
+                <div class="example-header">Derivada Básica</div>
+                
+                <div class="question">Questão: Encontra f'(x) de f(x) = 3x⁴ + 5x² - 7x + 2</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Aplica regra de potência a cada termo:</strong>
+                            <div class="formula-box">
+f(x) = 3x⁴ + 5x² - 7x + 2
+
+f'(x) = 3·4·x³ + 5·2·x - 7·1 + 0
+      = 12x³ + 10x - 7
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA: f'(x) = 12x³ + 10x - 7</div>
+            </div>
+
+            <div class="section-title">📝 Exemplo 2: Derivada do Produto</div>
+
+            <div class="block block-example">
+                <div class="example-header">Regra do Produto</div>
+                
+                <div class="question">Questão: Encontra f'(x) de f(x) = x·e^x</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Identifica u e v:</strong>
+                            <div class="formula-box">
+u = x       ⟹  u' = 1
+v = e^x     ⟹  v' = e^x
+                            </div>
+                        </li>
+                        <li>
+                            <strong>Usa [u·v]' = u'·v + u·v':</strong>
+                            <div class="formula-box">
+f'(x) = 1·e^x + x·e^x
+      = e^x + x·e^x
+      = e^x(1 + x)
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA: f'(x) = e^x(1 + x)</div>
+            </div>
+
+            <div class="section-title">🎯 Análise de Monotonia (Muito Testado em Exames!)</div>
+
+            <div class="block block-key">
+                <div class="block-title">Processo Passo-a-Passo</div>
+                <ol style="margin-left: 25px; margin-top: 12px;">
+                    <li><strong>1) Calcula f'(x)</strong></li>
+                    <li><strong>2) Encontra zeros:</strong> Resolve f'(x) = 0</li>
+                    <li><strong>3) Faz quadro de sinais</strong> de f'(x)</li>
+                    <li><strong>4) Conclusões:</strong>
+                        <ul style="margin-top: 8px; margin-left: 20px;">
+                            <li>Onde f' > 0: função cresce ↗</li>
+                            <li>Onde f' < 0: função diminui ↘</li>
+                            <li>f' muda + para -: máximo local</li>
+                            <li>f' muda - para +: mínimo local</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+
+            <div class="section-title">📝 Exemplo 3: Monotonia Completa</div>
+
+            <div class="block block-example">
+                <div class="example-header">Estudo de Monotonia e Extremos</div>
+                
+                <div class="question">Questão: Estuda monotonia e encontra extremos de f(x) = x³ - 3x² + 2</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Calcula f'(x):</strong>
+                            <div class="formula-box">
+f'(x) = 3x² - 6x
+      = 3x(x - 2)
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Encontra zeros de f':</strong>
+                            <div class="formula-box">
+f'(x) = 0
+3x(x - 2) = 0
+x = 0  ou  x = 2
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Quadro de sinais:</strong>
+                            <div class="formula-box">
+    x  | -∞ ... 0 ... 1 ... 2 ... +∞
+   f'(x)| (+) ... 0 ... (-) ... 0 ... (+)
+    f  | ↗  ... MAX  ↘  ... MIN  ↗
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Calcula valores dos extremos:</strong>
+                            <div class="formula-box">
+f(0) = 0³ - 3(0)² + 2 = 2      ⟹ MÁXIMO em (0, 2)
+f(2) = 2³ - 3(2)² + 2 = 8 - 12 + 2 = -2    ⟹ MÍNIMO em (2, -2)
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA:</div>
+                <p style="color: var(--accent-3); margin-left: 12px;">
+                    • Cresce em (-∞, 0) ∪ (2, +∞)<br>
+                    • Diminui em (0, 2)<br>
+                    • Máximo local: (0, 2)<br>
+                    • Mínimo local: (2, -2)
+                </p>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 DICAS PARA EXAME</strong>
+                <ul>
+                    <li><strong>SEMPRE usa quadro!</strong> É muito mais claro que texto</li>
+                    <li>Não esqueças de calcular f(x) nos pontos críticos</li>
+                    <li>Se segunda derivada > 0 no ponto = mínimo; < 0 = máximo</li>
+                    <li>Monotonia aparece em praticamente todos os exames Grupo II</li>
+                    <li>Escreve claramente: "f cresce em...", "f diminui em..."</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- CONCAVIDADE -->
+        <div id="concavidade" class="topic-card">
+            <h2>🔄 Concavidade e Segunda Derivada</h2>
+
+            <div class="block block-what">
+                <div class="block-title">🔍 O QUÊ É?</div>
+                <p>Concavidade descreve a "forma" da curva: se está "aberta para cima" (∪) ou "para baixo" (∩).</p>
+                <p style="margin-top: 12px;">A <strong>segunda derivada f''(x)</strong> mede isto.</p>
+            </div>
+
+            <div class="section-title">📋 Regras Simples</div>
+
+            <div class="properties-grid">
+                <div class="property-card">
+                    <strong>f''(x) > 0</strong>
+                    <p>Côncava para cima (∪) • "Sorriso"</p>
+                </div>
+                <div class="property-card">
+                    <strong>f''(x) < 0</strong>
+                    <p>Côncava para baixo (∩) • "Tristeza"</p>
+                </div>
+                <div class="property-card">
+                    <strong>f''(x) = 0 + muda sinal</strong>
+                    <p>Ponto de Inflexão</p>
+                </div>
+            </div>
+
+            <div class="section-title">📝 Exemplo: Concavidade</div>
+
+            <div class="block block-example">
+                <div class="example-header">Análise Completa com Concavidade</div>
+                
+                <div class="question">Questão: Estuda concavidade de f(x) = x³ - 3x² + 2</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Encontra f''(x):</strong>
+                            <div class="formula-box">
+f'(x) = 3x² - 6x
+f''(x) = 6x - 6
+       = 6(x - 1)
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Encontra zeros de f'':</strong>
+                            <div class="formula-box">
+f''(x) = 0
+6(x - 1) = 0
+x = 1
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Quadro de concavidade:</strong>
+                            <div class="formula-box">
+    x  | -∞ ... 1 ... +∞
+   f''(x)| (-) ... 0 ... (+)
+    f  | ∩ ... INFL ... ∪
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Ponto de Inflexão:</strong>
+                            <div class="formula-box">
+f(1) = 1³ - 3(1)² + 2 = 1 - 3 + 2 = 0
+Inflexão em (1, 0)
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA:</div>
+                <p style="color: var(--accent-3); margin-left: 12px;">
+                    • Côncava para baixo (∩) em (-∞, 1)<br>
+                    • Côncava para cima (∪) em (1, +∞)<br>
+                    • Ponto de Inflexão em (1, 0)
+                </p>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 DICAS PARA EXAME</strong>
+                <ul>
+                    <li>Segunda derivada aparece em <strong>praticamente todos os exames</strong></li>
+                    <li>Fazer <strong>dois quadros</strong> (f' e f'') é muito mais organizado</li>
+                    <li>Ponto de inflexão: f'' muda sinal</li>
+                    <li>Algumas questões pedem: "máximo ou mínimo?" → Usa f''</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TAYLOR -->
+        <div id="taylor" class="topic-card">
+            <h2>🎯 Polinómios de Taylor</h2>
+
+            <div class="block block-what">
+                <div class="block-title">🔍 O QUÊ É?</div>
+                <p>Um polinómio de Taylor é uma "aproximação" de uma função por um polinómio simples. Foca-se no comportamento perto de um ponto específico.</p>
+                <p style="margin-top: 12px;"><strong>Analogia:</strong> Se quiseres entender como sin(x) se comporta perto de x = 0, em vez de usar a função complicada, usas um polinómio simples que "parece" sin(x) naquela região.</p>
+            </div>
+
+            <div class="block block-why">
+                <div class="block-title">✅ PARA QUÊ SERVE?</div>
+                <ul>
+                    <li><strong>Aproximações numéricas:</strong> Sem calculadora, estima valores</li>
+                    <li><strong>Calcular limites:</strong> Simplifica formas indeterminadas</li>
+                    <li><strong>Análise local:</strong> Como função se comporta perto de ponto</li>
+                    <li><strong>Equações diferenciais:</strong> Encontrar soluções aproximadas</li>
+                    <li><strong>Aparece em Grupo II de exames</strong></li>
+                </ul>
+            </div>
+
+            <div class="section-title">📋 Fórmula de Taylor</div>
+
+            <div class="formula-box">
+P_n(x) = f(a) + f'(a)·(x-a) + [f''(a)/2!]·(x-a)² + [f'''(a)/3!]·(x-a)³ + ...
+
+Até ordem n.
+
+Notas:
+• a = ponto central (geralmente 0)
+• n! = n·(n-1)·(n-2)·...·1
+• 2! = 2, 3! = 6, 4! = 24, 5! = 120
+            </div>
+
+            <div class="section-title">📝 Exemplo: Taylor de Ordem 3</div>
+
+            <div class="block block-example">
+                <div class="example-header">Calcular Polinómio de Taylor</div>
+                
+                <div class="question">Questão: Encontra P₃(x) (Taylor ordem 3) de f(x) = sin(x) em torno de x = 0</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Tabela de derivadas avaliadas em x = 0:</strong>
+                            <div class="formula-box">
+f(x) = sin(x)        ⟹  f(0) = sin(0) = 0
+f'(x) = cos(x)       ⟹  f'(0) = cos(0) = 1
+f''(x) = -sin(x)     ⟹  f''(0) = -sin(0) = 0
+f'''(x) = -cos(x)    ⟹  f'''(0) = -cos(0) = -1
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Substitui na fórmula:</strong>
+                            <div class="formula-box">
+P₃(x) = f(0) + f'(0)·x + [f''(0)/2!]·x² + [f'''(0)/3!]·x³
+      = 0 + 1·x + [0/2]·x² + [-1/6]·x³
+      = x - x³/6
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA: P₃(x) = x - x³/6</div>
+            </div>
+
+            <div class="section-title">📝 Exemplo: Usar Taylor para Limite</div>
+
+            <div class="block block-example">
+                <div class="example-header">Calcular Limite com Taylor</div>
+                
+                <div class="question">Questão: Calcula lim(x→0) [sin(x) - x]/x³</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Expande sin(x) com Taylor:</strong>
+                            <div class="formula-box">
+sin(x) = x - x³/6 + x⁵/120 - ...
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Substitui no limite:</strong>
+                            <div class="formula-box">
+lim(x→0) [sin(x) - x]/x³
+= lim(x→0) [(x - x³/6 + ...) - x]/x³
+= lim(x→0) [-x³/6 + ...]/x³
+= lim(x→0) [-1/6 + ...]
+= -1/6
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA: lim = -1/6</div>
+            </div>
+
+            <div class="section-title">🔑 Taylor's Notáveis (MEMORIZA!)</div>
+
+            <div class="formula-box">
+e^x = 1 + x + x²/2! + x³/3! + x⁴/4! + ...
+
+sin(x) = x - x³/3! + x⁵/5! - x⁷/7! + ...
+
+cos(x) = 1 - x²/2! + x⁴/4! - x⁶/6! + ...
+
+1/(1-x) = 1 + x + x² + x³ + ...   (válido para |x| < 1)
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 DICAS PARA EXAME</strong>
+                <ul>
+                    <li>Se em torno de x = 0, cálculos são MUITO mais simples</li>
+                    <li>Memoriza os 4 Taylor's notáveis - economiza enorme tempo</li>
+                    <li>Sin tem termos ímpares (x, x³, x⁵...), cos tem termos pares (1, x², x⁴...)</li>
+                    <li>Para limite com Taylor, cancela potências comuns de x</li>
+                    <li>Se pergunta "ordem n", calcula até (x-a)ⁿ apenas</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- PRIMITIVAS -->
+        <div id="primitivas" class="topic-card">
+            <h2>🔄 Primitivas (Antiderivadas)</h2>
+
+            <div class="block block-what">
+                <div class="block-title">🔍 O QUÊ É?</div>
+                <p>Uma primitiva é o "inverso" de uma derivada. Se f'(x) = 2x, então a primitiva é f(x) = x² (porque a derivada de x² é 2x).</p>
+                <p style="margin-top: 12px;"><strong>Notação:</strong> ∫ f(x)dx = F(x) + C</p>
+                <p style="margin-top: 12px;"><strong>IMPORTANTE: SEMPRE adiciona +C (constante arbitrária)!</strong></p>
+            </div>
+
+            <div class="block block-why">
+                <div class="block-title">✅ PARA QUÊ SERVE?</div>
+                <ul>
+                    <li><strong>Base para integrais:</strong> Precisas de primitiva para calcular integrais</li>
+                    <li><strong>Física:</strong> Recuperar posição a partir de velocidade</li>
+                    <li><strong>Economia:</strong> Recuperar custos totais de custos marginais</li>
+                    <li><strong>Equações diferenciais:</strong> Resolver problemas complexos</li>
+                </ul>
+            </div>
+
+            <div class="section-title">🔑 Primitivas Imediatas (MEMORIZA COMPLETAMENTE!)</div>
+
+            <div class="formula-box">
+∫ x^n dx = x^(n+1)/(n+1) + C    (n ≠ -1)
+
+∫ 1/x dx = ln|x| + C
+
+∫ e^x dx = e^x + C
+
+∫ a^x dx = a^x/ln(a) + C
+
+∫ sin(x) dx = -cos(x) + C
+
+∫ cos(x) dx = sin(x) + C
+
+∫ 1/(1+x²) dx = arctg(x) + C
+
+∫ 1/√(1-x²) dx = arcsin(x) + C
+
+∫ [f(x) + g(x)] dx = ∫f(x)dx + ∫g(x)dx
+
+NUNCA esqueça +C!
+            </div>
+
+            <div class="section-title">📝 Exemplo 1: Primitiva Imediata</div>
+
+            <div class="block block-example">
+                <div class="example-header">Primitiva Simples</div>
+                
+                <div class="question">Questão: Encontra ∫ 5x⁴ dx</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Usa regra: ∫ x^n dx = x^(n+1)/(n+1) + C</strong>
+                            <div class="formula-box">
+∫ 5x⁴ dx = 5 · [x^(4+1)/(4+1)] + C
+         = 5 · [x⁵/5] + C
+         = x⁵ + C
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Verificação (deriva para confirmar):</strong>
+                            <div class="formula-box">
+[x⁵ + C]' = 5x⁴ ✓ Correto!
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA: ∫ 5x⁴ dx = x⁵ + C</div>
+            </div>
+
+            <div class="section-title">🎯 Técnica 1: Substituição (Muito Comum!)</div>
+
+            <div class="block block-key">
+                <div class="block-title">Quando Usar</div>
+                <p>Quando vês uma "função dentro de função".</p>
+                <p style="margin-top: 12px;"><strong>Processo:</strong></p>
+                <ol style="margin-left: 25px; margin-top: 8px;">
+                    <li>Escolhe u = função interior</li>
+                    <li>Calcula du = derivada·dx</li>
+                    <li>Substitui tudo em u</li>
+                    <li>Integra em u</li>
+                    <li>Substitui u de volta</li>
+                </ol>
+            </div>
+
+            <div class="section-title">📝 Exemplo 2: Substituição</div>
+
+            <div class="block block-example">
+                <div class="example-header">Substituição Simples</div>
+                
+                <div class="question">Questão: Encontra ∫ 2x·e^(x²) dx</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Escolhe u = x²</strong>
+                            <div class="formula-box">
+u = x²
+du = 2x dx
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Substitui:</strong>
+                            <div class="formula-box">
+∫ 2x·e^(x²) dx = ∫ e^u du = e^u + C
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Substitui u de volta:</strong>
+                            <div class="formula-box">
+= e^(x²) + C
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Verificação:</strong>
+                            <div class="formula-box">
+[e^(x²) + C]' = e^(x²)·2x ✓ Correto!
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA: ∫ 2x·e^(x²) dx = e^(x²) + C</div>
+            </div>
+
+            <div class="section-title">🎯 Técnica 2: Integração por Partes</div>
+
+            <div class="formula-box">
+∫ u·dv = u·v - ∫ v·du
+
+Mnemónica: "um vê menos integral vê dê um"
+            </div>
+
+            <div class="section-title">📝 Exemplo 3: Integração por Partes</div>
+
+            <div class="block block-example">
+                <div class="example-header">Partes</div>
+                
+                <div class="question">Questão: Encontra ∫ x·sin(x) dx</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Escolhe u e dv:</strong>
+                            <div class="formula-box">
+u = x         ⟹  du = dx
+dv = sin(x)dx ⟹  v = -cos(x)
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Aplica fórmula ∫u·dv = u·v - ∫v·du:</strong>
+                            <div class="formula-box">
+∫ x·sin(x) dx = x·(-cos(x)) - ∫ (-cos(x)) dx
+              = -x·cos(x) + ∫ cos(x) dx
+              = -x·cos(x) + sin(x) + C
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Verificação:</strong>
+                            <div class="formula-box">
+[-x·cos(x) + sin(x)]' = -cos(x) + x·sin(x) + cos(x) = x·sin(x) ✓
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA: ∫ x·sin(x) dx = -x·cos(x) + sin(x) + C</div>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 DICAS PARA EXAME</strong>
+                <ul>
+                    <li><strong>SEMPRE verifica derivando</strong> - é rápido e previne erros!</li>
+                    <li>Nunca esqueças +C na resposta final</li>
+                    <li>Se vé x·e^(...), tenta substituição</li>
+                    <li>Se vé x·sin(x) ou x·cos(x), tenta partes</li>
+                    <li>Memoriza primitivas comuns - economiza MUITO tempo</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- INTEGRAIS -->
+        <div id="integrais" class="topic-card">
+            <h2>∫ Integrais Definidos</h2>
+
+            <div class="block block-what">
+                <div class="block-title">🔍 O QUÊ É?</div>
+                <p>Um integral definido é a "área sob uma curva" entre dois pontos.</p>
+                <p style="margin-top: 12px;"><strong>Analogia:</strong> Se pintasses um quadro entre x=a e x=b por baixo da curva y=f(x), qual seria a área dessa "pintura"?</p>
+                <p style="margin-top: 12px;">Notação: <strong>∫ₐᵇ f(x)dx</strong></p>
+            </div>
+
+            <div class="block block-why">
+                <div class="block-title">✅ PARA QUÊ SERVE?</div>
+                <ul>
+                    <li><strong>Calcular áreas:</strong> Entre curvas, sob gráficos</li>
+                    <li><strong>Volumes:</strong> Sólidos de revolução</li>
+                    <li><strong>Física:</strong> Trabalho, energia, deslocamento</li>
+                    <li><strong>Probabilidade:</strong> Área sob curva de densidade</li>
+                    <li><strong>Economia:</strong> Lucro total, acumulação</li>
+                </ul>
+            </div>
+
+            <div class="section-title">🔑 Théorema Fundamental do Cálculo</div>
+
+            <div class="block block-key">
+                <div class="block-title">Se F é primitiva de f contínua em [a, b]:</div>
+                <div class="formula-box">
+∫ₐᵇ f(x)dx = F(b) - F(a) = [F(x)]ₐᵇ
+
+Lê-se: "Integral de a até b de f(x) dx"
+                </div>
+            </div>
+
+            <div class="section-title">📋 Propriedades Importantes</div>
+
+            <div class="formula-box">
+∫ₐᵇ [f(x) + g(x)]dx = ∫ₐᵇ f(x)dx + ∫ₐᵇ g(x)dx
+
+∫ₐᵇ k·f(x)dx = k·∫ₐᵇ f(x)dx
+
+∫ₐᶜ f(x)dx = ∫ₐᵇ f(x)dx + ∫ᵇᶜ f(x)dx
+
+∫ₐᵇ f(x)dx = -∫ᵇₐ f(x)dx   [inverte limites = inverte sinal]
+
+Se f é ímpar:   ∫₋ₐᵃ f(x)dx = 0
+Se f é par:     ∫₋ₐᵃ f(x)dx = 2·∫₀ᵃ f(x)dx
+            </div>
+
+            <div class="section-title">📝 Exemplo 1: Integral Simples</div>
+
+            <div class="block block-example">
+                <div class="example-header">Calcular Integral Definido</div>
+                
+                <div class="question">Questão: Calcula ∫₀² 3x² dx</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Encontra primitiva:</strong>
+                            <div class="formula-box">
+∫ 3x² dx = 3·[x³/3] + C = x³ + C
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Aplica limites: F(b) - F(a):</strong>
+                            <div class="formula-box">
+∫₀² 3x² dx = [x³]₀² 
+           = 2³ - 0³ 
+           = 8 - 0 
+           = 8
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA: ∫₀² 3x² dx = 8</div>
+            </div>
+
+            <div class="section-title">🎯 Cálculo de Áreas entre Curvas</div>
+
+            <div class="block block-key">
+                <div class="block-title">Processo Completo</div>
+                <ol style="margin-left: 25px; margin-top: 12px;">
+                    <li><strong>Encontra intersecções:</strong> Resolve f(x) = g(x)</li>
+                    <li><strong>Determina qual está acima:</strong> Testa um ponto no intervalo</li>
+                    <li><strong>Monta o integral:</strong> Área = ∫ₐᵇ |f(x) - g(x)| dx (a maior menos a menor)</li>
+                    <li><strong>Calcula:</strong> Encontra primitivas e substitui limites</li>
+                </ol>
+            </div>
+
+            <div class="section-title">📝 Exemplo 2: Área entre Curvas (MUITO TESTADO!)</div>
+
+            <div class="block block-example">
+                <div class="example-header">Calcular Área entre Duas Curvas</div>
+                
+                <div class="question">Questão: Calcula a área entre y = 2x e y = x² de x = 0 até x = 2</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Verifica intersecções (já dadas: 0 e 2):</strong>
+                            <div class="formula-box">
+2x = x²
+x² - 2x = 0
+x(x - 2) = 0
+x = 0  ou  x = 2
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Qual está acima? Testa x = 1:</strong>
+                            <div class="formula-box">
+y = 2(1) = 2  (reta)
+y = 1² = 1    (parábola)
+
+Reta está acima! (2 > 1)
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Monta integral:</strong>
+                            <div class="formula-box">
+Área = ∫₀² (2x - x²) dx
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Encontra primitiva:</strong>
+                            <div class="formula-box">
+∫ (2x - x²) dx = 2·x²/2 - x³/3 + C 
+               = x² - x³/3 + C
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Aplica limites:</strong>
+                            <div class="formula-box">
+[x² - x³/3]₀² = (2² - 2³/3) - (0 - 0)
+              = (4 - 8/3)
+              = 12/3 - 8/3
+              = 4/3
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA: Área = 4/3</div>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 DICAS PARA EXAME</strong>
+                <ul>
+                    <li>NUNCA esqueças: F(b) - F(a), não F(a) - F(b)</li>
+                    <li>Para mudança de variável, SEMPRE muda os limites!</li>
+                    <li>Se vés simetria (função par/ímpar), usa propriedades para simplificar</li>
+                    <li>SEMPRE desenha a região - ajuda a ver qual está acima</li>
+                    <li>Área é sempre positiva (toma módulo se resultado negativo)</li>
+                    <li>Aparecem em Grupo II - questões de cálculo de área muito comuns</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- TRIGONOMETRIA -->
+        <div id="trig" class="topic-card">
+            <h2>📐 Funções Trigonométricas e Inversas</h2>
+
+            <div class="block block-what">
+                <div class="block-title">🔍 O QUÊ SÃO?</div>
+                <p>Funções trigonométricas (sin, cos, tg) e suas inversas (arcsin, arccos, arctg) aparecem constantemente em análise matemática.</p>
+                <p style="margin-top: 12px;">São essenciais para encontrar domínios, calcular derivadas, primitivas e limites.</p>
+            </div>
+
+            <div class="section-title">📋 Domínios das Inversas (MUITO TESTADO EM GRUPO I!)</div>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Função</th>
+                    <th>Domínio</th>
+                    <th>Contradomínio</th>
+                </tr>
+                <tr>
+                    <td><strong>sin(x)</strong></td>
+                    <td>ℝ</td>
+                    <td>[-1, 1]</td>
+                </tr>
+                <tr>
+                    <td><strong>cos(x)</strong></td>
+                    <td>ℝ</td>
+                    <td>[-1, 1]</td>
+                </tr>
+                <tr>
+                    <td><strong>tg(x)</strong></td>
+                    <td>ℝ \ {π/2 + kπ}</td>
+                    <td>ℝ</td>
+                </tr>
+                <tr>
+                    <td><strong>arcsin(x)</strong></td>
+                    <td>[-1, 1]</td>
+                    <td>[-π/2, π/2]</td>
+                </tr>
+                <tr>
+                    <td><strong>arccos(x)</strong></td>
+                    <td>[-1, 1]</td>
+                    <td>[0, π]</td>
+                </tr>
+                <tr>
+                    <td><strong>arctg(x)</strong></td>
+                    <td>ℝ</td>
+                    <td>(-π/2, π/2)</td>
+                </tr>
+            </table>
+
+            <div class="block block-key">
+                <div class="block-title">🎯 REGRA DE OURO</div>
+                <ul>
+                    <li><strong>arcsin e arccos:</strong> Domínio = [-1, 1]. Ponto. Nunca sai disso.</li>
+                    <li><strong>arctg:</strong> Sem restrição. Funciona para TODO o número.</li>
+                </ul>
+            </div>
+
+            <div class="section-title">📝 Exemplo: Domínio com Arcsin/Arccos</div>
+
+            <div class="block block-example">
+                <div class="example-header">Encontrar Domínio de f(x) = arccos(x/(x-1))</div>
+                
+                <div class="question">Questão: Encontra o domínio de f(x) = arccos(x/(x-1))</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Restrição 1: x - 1 ≠ 0</strong>
+                            <div class="formula-box">
+x ≠ 1
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Restrição 2: arccos exige -1 ≤ x/(x-1) ≤ 1</strong>
+                            <div class="formula-box">
+-1 ≤ x/(x-1) ≤ 1
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Resolvemos A MESMA inequação que no exemplo de Funções!</strong>
+                            <p>(Segue os mesmos passos)</p>
+                            <p style="color: var(--accent-3); margin-top: 12px;">Resultado: x ≤ 1/2</p>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA: Domínio = (-∞, 1/2]</div>
+            </div>
+
+            <div class="section-title">🔑 Derivadas Trigonométricas</div>
+
+            <div class="formula-box">
+[sin(x)]' = cos(x)
+[cos(x)]' = -sin(x)
+[tg(x)]' = sec²(x) = 1/cos²(x)
+[arcsin(x)]' = 1/√(1-x²)
+[arccos(x)]' = -1/√(1-x²)
+[arctg(x)]' = 1/(1+x²)
+            </div>
+
+            <div class="section-title">🔑 Primitivas Trigonométricas</div>
+
+            <div class="formula-box">
+∫ sin(x) dx = -cos(x) + C
+∫ cos(x) dx = sin(x) + C
+∫ 1/(1+x²) dx = arctg(x) + C
+∫ 1/√(1-x²) dx = arcsin(x) + C
+            </div>
+
+            <div class="section-title">🔑 Limites Notáveis com Trigonometria</div>
+
+            <div class="formula-box">
+lim(x→0) [sin(x)/x] = 1
+
+lim(x→0) [(1-cos(x))/x²] = 1/2
+
+lim(x→0) [tg(x)/x] = 1
+            </div>
+
+            <div class="section-title">📝 Exemplo: Limite com Trig</div>
+
+            <div class="block block-example">
+                <div class="example-header">Limite Notável</div>
+                
+                <div class="question">Questão: Calcula lim(x→0) sin(3x)/x</div>
+
+                <div class="steps-box">
+                    <ol>
+                        <li>
+                            <strong>Observa que é 0/0:</strong>
+                            <div class="formula-box">
+sin(3x)/x = 0/0 quando x → 0
+                            </div>
+                        </li>
+
+                        <li>
+                            <strong>Manipula para usar lim[sin(u)/u] = 1:</strong>
+                            <div class="formula-box">
+lim(x→0) sin(3x)/x 
+= lim(x→0) [sin(3x)/(3x)]·3
+= 3·lim(u→0) [sin(u)/u]    (onde u = 3x)
+= 3·1
+= 3
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="answer">✓ RESPOSTA: lim = 3</div>
+            </div>
+
+            <div class="tip-box">
+                <strong>💡 DICAS PARA EXAME</strong>
+                <ul>
+                    <li><strong>arcsin/arccos domínio [-1, 1]:</strong> MUITO testado em Grupo I</li>
+                    <li>arctg não tem restrição - funciona para TODO o número</li>
+                    <li>Limite sin(x)/x = 1 é fundamental - aparece constantemente</li>
+                    <li>Se vés sin(kx)/x, transforma em k·[sin(kx)/(kx)]</li>
+                    <li>Derivadas e primitivas trigonométricas aparecem em Grupo II</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>📊 Análise Matemática I - Guia Interativo Completo</p>
+        <p>Instituto Politécnico de Beja • Engenharia Informática • 2026</p>
+        <p style="margin-top: 15px; font-size: 0.85em; opacity: 0.7;">Cada tópico: O QUÊ É • PARA QUÊ SERVE • CONCEITOS-CHAVE • EXEMPLO RESOLVIDO • DICAS PARA EXAME</p>
+    </footer>
+
+    <script>
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const topicCards = document.querySelectorAll('.topic-card');
+
+        navButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const topic = button.getAttribute('data-topic');
+                switchTopic(topic);
+            });
+        });
+
+        function switchTopic(topic) {
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            topicCards.forEach(card => card.classList.remove('active'));
+
+            const button = document.querySelector(`[data-topic="${topic}"]`);
+            const card = document.getElementById(topic);
+            
+            if (button && card) {
+                button.classList.add('active');
+                card.classList.add('active');
+                window.scrollTo(0, 250);
+            }
+        }
+    </script>
+</body>
+</html>

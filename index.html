@@ -1980,301 +1980,303 @@ lim(x→0) sin(3x)/x
                 </ul>
             </div>
         </div>
-                <!-- FORMULÁRIO EXPLICADO -->
-        <div id="formulario" class="topic-card">
-            <h2>📋 O Formulário de Análise Matemática</h2>
+                  <!-- FORMULÁRIO EXPLICADO -->
+<div id="formulario" class="topic-card">
+    <h2>📋 O Formulário de Análise Matemática — Explicações e Exemplos (formulario de exame)</h2>
 
-            <!-- INTRO GERAL -->
-            <div class="block block-what">
-                <div class="block-title">🔍 O QUE É O FORMULÁRIO?</div>
-                <p>É uma folha oficial com as <strong>fórmulas mais importantes</strong> da disciplina (derivadas, primitivas, integrais, teoremas…). Não serve para decorar, serve para:</p>
-                <ul>
-                    <li><strong>Reconhecer o tipo de exercício</strong> (derivadas? integrais? extremos?)</li>
-                    <li><strong>Ir buscar a fórmula certa</strong> e aplicá-la ao teu caso</li>
-                </ul>
-                <p style="margin-top: 12px;"><strong>Ideia-chave:</strong> o trabalho no exame não é “saber a fórmula”, é <strong>saber quando e como a usar</strong>.</p>
-            </div>
+    <!-- INTRO -->
+    <div class="block block-what">
+        <div class="block-title">🔍 O QUE VAMOS FAZER</div>
+        <p>Vou explicar cada fórmula do formulário: <strong>o que é</strong>, <strong>quando usar</strong>, <strong>porquê</strong> (uma frase) e um <strong>exemplo curto e direto</strong>. Mantive o formato de "flashcards médias" e as classes do teu CSS.</p>
+    </div>
 
-            <div class="section-title">⚙️ Como Pensar o Formulário em 4 Passos</div>
+    <div class="section-title">⚙️ Como usar cada flashcard</div>
+    <div class="steps-box">
+        <ol>
+            <li><strong>Vê qual é a fórmula</strong> no formulário.</li>
+            <li><strong>Lê "Quando usar" e "Porquê"</strong> para saber a pista do problema.</li>
+            <li><strong>Segue o exemplo</strong> passo a passo e aplica ao exercício.</li>
+        </ol>
+    </div>
 
-            <div class="steps-box">
-                <ol>
-                    <li>
-                        <strong>1. Identifica o TIPO de questão</strong>
-                        <p>“reta tangente?”, “derivar?”, “máximo/mínimo?”, “integral/área?”, “limite complicado?”…</p>
-                    </li>
-                    <li>
-                        <strong>2. Vai à SECÇÃO certa do formulário</strong>
-                        <p>Reta tangente, regras de derivação, teoremas, primitivas, integrais.</p>
-                    </li>
-                    <li>
-                        <strong>3. Copia a fórmula GENÉRICA</strong>
-                        <p>Escreve-a tal como está no formulário (sem números ainda).</p>
-                    </li>
-                    <li>
-                        <strong>4. Adapta ao teu exercício</strong>
-                        <p>Substitui f, g, a, b, u(x)… pelos dados da questão e faz as contas com calma.</p>
-                    </li>
-                </ol>
-            </div>
+    <div class="section-title">📖 Flashcards completos (fórmula → quando → porquê → exemplo)</div>
 
-            <div class="section-title">📖 As 5 Grandes Partes do Formulário</div>
+    <!-- 1) Reta Tangente -->
+    <div class="block block-key">
+        <div class="block-title">1️⃣ Reta Tangente</div>
 
-            <!-- 1) RETA TANGENTE -->
-            <div class="block block-key">
-                <div class="block-title">1️⃣ Equação da Reta Tangente</div>
-                <p><strong>Fórmula no formulário:</strong></p>
-                <div class="formula-box">
-y = f(a) + f′(a)(x − a)
-                </div>
+        <p><strong>Fórmula (formulário):</strong></p>
+        <div class="formula-box">
+            y = f(a) + f′(a)(x − a)
+        </div>
 
-                <p><strong>O que é isto?</strong> É a <strong>linha reta</strong> que “toca” o gráfico da função num ponto e tem a mesma inclinação que a curva nesse ponto.</p>
+        <p><strong>Quando usar:</strong> Pedidos do tipo "determina a reta tangente em x = a" ou "aproximação linear de f perto de a".</p>
+        <p><strong>Porquê:</strong> A reta dá a melhor aproximação linear da função perto do ponto; útil para estimativas rápidas e para o método de Newton.</p>
 
-                <p><strong>QUANDO aparece no exame?</strong></p>
-                <ul>
-                    <li>“Determina a equação da reta tangente em x = a”</li>
-                    <li>“Reta tangente ao gráfico de f no ponto (a, f(a))”</li>
-                </ul>
+        <p><strong>Exemplo passo a passo:</strong></p>
+        <ul>
+            <li>Dados: f(x) = x², a = 2.</li>
+            <li>Calcula f(2) = 4.</li>
+            <li>Deriva: f′(x) = 2x → f′(2) = 4.</li>
+            <li>Substitui: y = 4 + 4(x − 2) → y = 4x − 4.</li>
+        </ul>
+    </div>
 
-                <p><strong>COMO usar em 3 passos:</strong></p>
-                <ul>
-                    <li>1) Calcula <strong>f(a)</strong> (substitui x = a na função)</li>
-                    <li>2) Calcula a derivada <strong>f′(x)</strong> e depois <strong>f′(a)</strong></li>
-                    <li>3) Mete na fórmula: <strong>y = f(a) + f′(a)(x − a)</strong> e simplifica</li>
-                </ul>
+    <!-- 2) Regras de Derivação + Tabela -->
+    <div class="block block-key">
+        <div class="block-title">2️⃣ Regras de Derivação + Tabela</div>
 
-                <div class="tip-box">
-                    <strong>💡 Se não sabes por onde começar:</strong> escreve primeiro a fórmula geral do formulário, <em>só depois</em> substituis f(a) e f′(a).
-                </div>
-            </div>
+        <p><strong>Tabela — derivadas básicas (cada linha separada):</strong></p>
+        <div class="formula-box">
+            (x<sup>α</sup>)′ = α·x<sup>α−1</sup><br>
+            (e<sup>x</sup>)′ = e<sup>x</sup><br>
+            (ln x)′ = 1 / x<br>
+            (sin x)′ = cos x<br>
+            (cos x)′ = − sin x<br>
+            (arcsin x)′ = 1 / √(1 − x²)<br>
+            (arctan x)′ = 1 / (1 + x²)
+        </div>
 
-            <!-- 2) REGRAS DE DERIVAÇÃO + TABELA -->
-            <div class="block block-key">
-                <div class="block-title">2️⃣ Regras de Derivação e Tabela de Derivadas</div>
-                <p><strong>Parte 1 — Tabela (derivadas básicas):</strong></p>
-                <div class="formula-box">
-Constante α      → (α)′ = 0
-Potência x^α     → (x^α)′ = αx^(α−1)
-Exponencial e^x  → (e^x)′ = e^x
-Logaritmo ln(x)  → (ln(x))′ = 1/x
-sin(x)           → (sin(x))′ = cos(x)
-cos(x)           → (cos(x))′ = −sin(x)
-arcsin(x)        → (arcsin(x))′ = 1/√(1−x²)
-arctan(x)        → (arctan(x))′ = 1/(1+x²)
-                </div>
+        <p><strong>Regras (usar quando juntar funções):</strong></p>
+        <div class="formula-box">
+            (f + g)′ = f′ + g′<br>
+            (α f)′ = α f′<br>
+            (f · g)′ = f′ g + f g′<br>
+            (f / g)′ = (f′ g − f g′) / g²<br>
+            (f ∘ u)′ = f′(u) · u′
+        </div>
 
-                <p><strong>Parte 2 — Regras (combinar funções):</strong></p>
-                <div class="formula-box">
-(f + g)′       = f′ + g′          (soma)
-(αf)′          = αf′              (constante)
-(fg)′          = f′g + fg′        (produto)
-(f/g)′         = (f′g − fg′)/g²   (quociente)
-[f(u(x))]′     = f′(u(x))·u′(x)   (composta)
-                </div>
+        <p><strong>Quando usar:</strong> Sempre que pedirem f′(x) ou ao estudar monotonia, extremos, concavidade, ou Taylor.</p>
+        <p><strong>Porquê:</strong> Estas são as regras básicas para calcular derivadas sem “adivinhação”; identificam a estrutura e dão a receita de cálculo.</p>
 
-                <p><strong>QUANDO aparece no exame?</strong></p>
-                <ul>
-                    <li>“Calcula f′(x)”</li>
-                    <li>Início de exercícios de monotonia, extremos, concavidade, Taylor…</li>
-                    <li>Domínio com arctan/arcsin/arccos (precisas das derivadas às vezes)</li>
-                </ul>
+        <p><strong>Exemplos (claros, cada um em linha):</strong></p>
+        <ul>
+            <li><strong>Soma:</strong> (x² + 3x)' = 2x + 3.</li>
+            <li><strong>Produto:</strong> (x·sin x)' = sin x + x·cos x.</li>
+            <li><strong>Quociente:</strong> (x/(1+x²))' = (1 − x²)/(1+x²)².</li>
+            <li><strong>Cadeia:</strong> (e<sup>x²</sup>)' = e<sup>x²</sup> · 2x.</li>
+        </ul>
 
-                <p><strong>COMO usar na prática:</strong></p>
-                <ul>
-                    <li>1) Olha para a função e <strong>divide em blocos simples</strong>: potências, senos, exponenciais…</li>
-                    <li>2) Usa a <strong>tabela</strong> para cada bloco simples.</li>
-                    <li>3) Usa as <strong>regras</strong> (soma/produto/quociente/composta) para colar tudo.</li>
-                    <li>4) Simplifica no fim (factores comuns, frações, etc.).</li>
-                </ul>
+        <div class="tip-box">
+            <strong>💡 Porquê lembrar:</strong> identificar "forma" (soma/produto/quociente/composta) salva tempo — aplica a regra certa sem hesitar.
+        </div>
+    </div>
 
-                <div class="tip-box">
-                    <strong>💡 Dica:</strong> se a função tem “algo dentro de algo” (por ex. sin(e^x), ln(x²+1)), é quase sempre <strong>regra da cadeia</strong>.
-                </div>
-            </div>
+    <!-- 3) Pontos críticos e extremos -->
+    <div class="block block-key">
+        <div class="block-title">3️⃣ Pontos Críticos e Extremos</div>
 
-            <!-- 3) TEOREMAS, EXTREMOS, CONCAVIDADE, TAYLOR, CAUCHY -->
-            <div class="block block-key">
-                <div class="block-title">3️⃣ Teoremas, Extremos e Concavidade</div>
-                <p>Esta parte do formulário junta vários resultados “teóricos”, mas a maior parte das perguntas usa-os de forma mecânica. O importante é saber <strong>o que procurar</strong> e <strong>para quê serve</strong>.</p>
+        <div class="formula-box">
+            Se f tem extremo local em a e f é diferenciável em a → f′(a) = 0
+        </div>
 
-                <p class="section-title" style="margin-top: 15px;">3.1 Pontos Críticos e Extremos</p>
-                <div class="formula-box">
-Se f tem extremo local em a e é diferenciável em a, então f′(a) = 0.
-                </div>
-                <p><strong>QUANDO:</strong> máximo/minímo local, estudo de monotonia, “pontos críticos”.</p>
-                <p><strong>COMO:</strong></p>
-                <ul>
-                    <li>1) Calcula f′(x) e resolve f′(x)=0 → dás os candidatos</li>
-                    <li>2) Usa quadro de sinais de f′(x) <em>ou</em> f″(a) (critério de 2.ª ordem do formulário)</li>
-                    <li>3) Conclui: onde f′ muda de + para − → máximo; de − para + → mínimo.</li>
-                </ul>
+        <p><strong>Quando usar:</strong> Quando o enunciado pede máximos ou mínimos locais, ou "encontra pontos críticos".</p>
+        <p><strong>Porquê:</strong> Num extremo local a inclinação da curva é zero (reta tangente horizontal); isto dá candidatos a testar.</p>
 
-                <p class="section-title" style="margin-top: 15px;">3.2 Teorema de Lagrange</p>
-                <div class="formula-box">
-Se f é contínua em [a,b] e diferenciável em ]a,b[, 
-existe c ∈ ]a,b[ tal que:
+        <p><strong>Como fazer (prático):</strong></p>
+        <ul>
+            <li>Calcula f′(x) e resolve f′(x) = 0 → candidatos.</li>
+            <li>Usa f″(a) (critério da 2.ª derivada) ou quadro de sinais de f′ para decidir se é máximo, mínimo ou nenhum.</li>
+        </ul>
 
-f′(c) = [f(b) − f(a)] / (b − a)
-                </div>
-                <p><strong>QUANDO:</strong> questões de “prova que existe c com tal propriedade” ou desigualdades envolvendo derivadas.</p>
-                <p><strong>COMO:</strong> verifica sempre as condições (contínua em [a,b], derivável em ]a,b[) e depois aponta a fórmula do formulário para justificar.</p>
+        <p><strong>Exemplo:</strong></p>
+        <ul>
+            <li>f(x) = x³ − 3x. f′(x) = 3x² − 3 → 3x² − 3 = 0 → x = ±1.</li>
+            <li>f″(x) = 6x → f″(1) = 6 > 0 → mínimo em x = 1; f″(−1) = −6 < 0 → máximo em x = −1.</li>
+        </ul>
+    </div>
 
-                <p class="section-title" style="margin-top: 15px;">3.3 Regra de Cauchy (tipo L’Hôpital)</p>
-                <div class="formula-box">
-Se lim(x→a) f(x) = lim(x→a) g(x) = 0 ou ±∞, 
-então:
+    <!-- 4) Teorema de Lagrange (MVT) -->
+    <div class="block block-key">
+        <div class="block-title">4️⃣ Teorema de Lagrange (MVT)</div>
 
-lim(x→a) f(x)/g(x) = lim(x→a) f′(x)/g′(x),
-se esse limite existir.
-                </div>
-                <p><strong>QUANDO:</strong> limites que dão 0/0 ou ∞/∞ e são difíceis de simplificar só com álgebra.</p>
-                <p><strong>COMO:</strong> identifica f e g, deriva ambos (usando a parte das derivadas do formulário) e faz o novo limite com f′/g′.</p>
+        <div class="formula-box">
+            Se f contínua em [a,b] e diferenciável em (a,b) → ∃ c ∈ (a,b): f′(c) = (f(b) − f(a)) / (b − a)
+        </div>
 
-                <p class="section-title" style="margin-top: 15px;">3.4 Concavidade e Critério de 2.ª Ordem</p>
-                <div class="formula-box">
-f″(x) > 0 → concavidade para cima (∪)
-f″(x) < 0 → concavidade para baixo (∩)
+        <p><strong>Quando usar:</strong> Quando o enunciado pede "mostra que existe c..." ou para ligar variação média com derivada.</p>
+        <p><strong>Porquê:</strong> Garante que a derivada atinge a velocidade média entre dois pontos; é a base para muitos argumentos e desigualdades.</p>
 
-Se f′(a)=0 e:
-• f″(a) > 0 → mínimo local
-• f″(a) < 0 → máximo local
-                </div>
-                <p><strong>QUANDO:</strong> pedir concavidade, pontos de inflexão, ou classificar extremos com f″.</p>
+        <p><strong>Exemplo curto:</strong> f(x) = x² em [1,3]. (f(3)−f(1))/(3−1) = (9−1)/2 = 4. Logo existe c com f′(c) = 4 → 2c = 4 → c = 2.</p>
+    </div>
 
-                <p class="section-title" style="margin-top: 15px;">3.5 Fórmula de Taylor</p>
-                <div class="formula-box">
-f(x) = f(a) + f′(a)(x−a) + f″(a)/2!·(x−a)² + … + f⁽ⁿ⁾(a)/n!·(x−a)ⁿ + Rₙ(x)
-                </div>
-                <p><strong>QUANDO:</strong> “polinómio de Taylor de ordem n” ou limites usando Taylor.</p>
-                <p><strong>COMO:</strong> copias a fórmula do formulário e calculas f(a), f′(a), f″(a)… até à ordem pedida.</p>
-            </div>
+    <!-- 5) L'Hôpital / Regra de Cauchy -->
+    <div class="block block-key">
+        <div class="block-title">5️⃣ L'Hôpital / Regra de Cauchy</div>
 
-            <!-- 4) PRIMITIVAS -->
-            <div class="block block-key">
-                <div class="block-title">4️⃣ Primitivas (Antiderivadas)</div>
-                <p><strong>Ideia:</strong> fazer o “caminho inverso” da derivada. Se conheces f′, queres encontrar uma F tal que F′=f.</p>
+        <div class="formula-box">
+            Se forma indeterminada 0/0 ou ∞/∞: lim<sub>x→a</sub> f(x)/g(x) = lim<sub>x→a</sub> f′(x)/g′(x) (se existir)
+        </div>
 
-                <p><strong>Parte principal do formulário:</strong></p>
-                <div class="formula-box">
-∫ α dx              = αx + C
-∫ u^α·u′ dx         = u^(α+1)/(α+1) + C   (α ≠ −1)
-∫ e^u·u′ dx         = e^u + C
-∫ u′/u dx           = ln|u| + C
-∫ sin(u)·u′ dx      = −cos(u) + C
-∫ cos(u)·u′ dx      =  sin(u) + C
-∫ u′/√(1−u²) dx    = arcsin(u) + C
-∫ u′/(1+u²) dx     = arctan(u) + C
-                </div>
+        <p><strong>Quando usar:</strong> Limites que dão 0/0 ou ∞/∞ e não simplificam por álgebra.</p>
+        <p><strong>Porquê:</strong> Derivar cima e baixo simplifica muitas indeterminações e dá um limite manejável.</p>
 
-                <p><strong>QUANDO aparece no exame?</strong></p>
-                <ul>
-                    <li>“Encontra uma primitiva de f(x) = …”</li>
-                    <li>Parte intermédia de integrais definidos (porque precisas de F para usar Barrow).</li>
-                    <li>Questões com substituição (x dentro de raiz, log, etc.) ou integrais por partes.</li>
-                </ul>
+        <p><strong>Exemplo:</strong> lim<sub>x→0</sub> (sin x)/x → deriva: (cos x)/1 → avalia em 0: cos 0 = 1.</p>
+    </div>
 
-                <p><strong>COMO usar:</strong></p>
-                <ul>
-                    <li>1) Tenta identificar um <strong>u(x)</strong> (o “dentro”) e o <strong>u′(x)</strong> a multiplicar.</li>
-                    <li>2) Compara com as linhas do formulário (u^α·u′, e^u·u′, u′/u, …).</li>
-                    <li>3) Aplica diretamente a fórmula correspondente.</li>
-                    <li>4) No fim, escreve sempre “+ C”.</li>
-                </ul>
+    <!-- 6) Concavidade e 2.ª derivada -->
+    <div class="block block-key">
+        <div class="block-title">6️⃣ Concavidade e Critério da 2.ª derivada</div>
 
-                <div class="tip-box">
-                    <strong>💡 Se não encaixa em nenhuma linha da tabela:</strong> pensa em “substituição” ou “integração por partes” — também estão referidas no formulário.
-                </div>
-            </div>
+        <div class="formula-box">
+            f″(x) > 0 → concavidade para cima (∪)<br>
+            f″(x) < 0 → concavidade para baixo (∩)
+        </div>
 
-            <!-- 5) INTEGRAIS DEFINIDOS + ÁREAS -->
-            <div class="block block-key">
-                <div class="block-title">5️⃣ Integrais Definidos e Cálculo de Áreas</div>
-                <p><strong>Fórmula central do formulário:</strong></p>
-                <div class="formula-box">
-Se F é uma primitiva de f e f é contínua em [a,b], então:
+        <p><strong>Quando usar:</strong> Pedidos sobre concavidade, pontos de inflexão ou para classificar extremos usando f″.</p>
+        <p><strong>Porquê:</strong> A segunda derivada diz como a inclinação está a mudar; sinal positivo indica "curva em taça".</p>
 
-∫ₐᵇ f(x) dx = F(b) − F(a)   (Regra de Barrow / Teorema Fundamental do Cálculo)
-                </div>
+        <p><strong>Exemplos:</strong></p>
+        <ul>
+            <li>f(x) = x² → f″(x) = 2 > 0 → concavidade para cima sempre.</li>
+            <li>f(x) = x³ → f″(x) = 6x; muda de sinal em 0 → ponto de inflexão em x = 0.</li>
+        </ul>
+    </div>
 
-                <p><strong>QUANDO aparece no exame?</strong></p>
-                <ul>
-                    <li>“Calcula ∫ₐᵇ f(x)dx”</li>
-                    <li>“Calcula a área da região limitada por …”</li>
-                </ul>
+    <!-- 7) Taylor -->
+    <div class="block block-key">
+        <div class="block-title">7️⃣ Fórmula de Taylor (aproximação)</div>
 
-                <p><strong>COMO usar para integrais simples:</strong></p>
-                <ul>
-                    <li>1) Usa a <strong>secção de primitivas</strong> para encontrar F(x).</li>
-                    <li>2) Substitui os limites: calcula F(b) e F(a).</li>
-                    <li>3) Faz F(b) − F(a).</li>
-                </ul>
+        <div class="formula-box">
+            f(x) = f(a) + f′(a)(x−a) + f″(a)/2! (x−a)² + … + f⁽ⁿ⁾(a)/n! (x−a)ⁿ + Rₙ(x)
+        </div>
 
-                <p><strong>Cálculo de áreas (como está no formulário):</strong></p>
-                <div class="formula-box">
-Se R é a região limitada por y=g(x) (em cima) e y=f(x) (em baixo), entre x=a e x=b:
+        <p><strong>Quando usar:</strong> Pedidos de desenvolvimento/Taylor, aproximações locais ou limites que beneficiam do desenvolvimento.</p>
+        <p><strong>Porquê:</strong> Substitui a função por um polinómio que aproxima bem perto de a; o resto dá uma cota do erro.</p>
 
-Área(R) = ∫ₐᵇ [g(x) − f(x)] dx
-                </div>
+        <p><strong>Exemplo rápido:</strong> e<sup>x</sup> perto de 0: e<sup>x</sup> ≈ 1 + x + x²/2 (resto O(x³)).</p>
+    </div>
 
-                <p><strong>COMO usar para áreas:</strong></p>
-                <ul>
-                    <li>1) Descobre qual função está por cima (testa 1 ponto no intervalo).</li>
-                    <li>2) Monta o integral “cima − baixo” de a até b.</li>
-                    <li>3) Integra como antes (primitiva + Barrow).</li>
-                    <li>4) Garante que o resultado final é positivo (área ≥ 0).</li>
-                </ul>
+    <!-- 8) Primitivas (Antiderivadas) -->
+    <div class="block block-key">
+        <div class="block-title">8️⃣ Primitivas (Antiderivadas)</div>
 
-                <div class="tip-box">
-                    <strong>💡 Truques do formulário:</strong>
-                    <ul>
-                        <li>Propriedades com <strong>função par/ímpar</strong> em [−a,a] ajudam a simplificar contas.</li>
-                        <li>Podes partir o integral em dois ([a,c] + [c,b]) usando a fórmula do formulário.</li>
-                    </ul>
-                </div>
-            </div>
+        <p><strong>O que são:</strong> F tais que F′ = f. Usas para integrais indefinidas e para aplicar Barrow nas definidas.</p>
 
-            <!-- RESUMO FINAL -->
-            <div class="section-title">⚡ Resumo: Como “Ler” o Formulário em Exame</div>
+        <div class="formula-box">
+            ∫ α dx = α x + C<br>
+            ∫ u⁽α⁾·u′ dx = u⁽α+1⁾/(α+1) + C  (α ≠ −1)<br>
+            ∫ eᵘ·u′ dx = eᵘ + C<br>
+            ∫ u′/u dx = ln|u| + C<br>
+            ∫ sin(u)·u′ dx = −cos(u) + C
+        </div>
 
-            <div class="block block-what">
-                <table class="comparison-table">
-                    <tr>
-                        <th>Se a pergunta fala de…</th>
-                        <th>Olhas para…</th>
-                        <th>Primeiros passos</th>
-                    </tr>
-                    <tr>
-                        <td>“reta tangente em x=a”</td>
-                        <td>Equação da reta tangente</td>
-                        <td>Calcula f(a), f′(a) e mete em y = f(a) + f′(a)(x−a)</td>
-                    </tr>
-                    <tr>
-                        <td>“deriva f(x)”</td>
-                        <td>Regras de derivação + tabela</td>
-                        <td>Parte a função, aplica tabela + regras (soma/produto/quociente/composta)</td>
-                    </tr>
-                    <tr>
-                        <td>“máximos/mínimos”, “pontos críticos”</td>
-                        <td>Teorema dos extremos + segunda derivada</td>
-                        <td>Resolve f′(x)=0, depois usa quadro de sinais ou f″(a)</td>
-                    </tr>
-                    <tr>
-                        <td>“prova que existe c…”</td>
-                        <td>Lagrange / Cauchy</td>
-                        <td>Verifica continuidade+derivabilidade e cita a fórmula respetiva</td>
-                    </tr>
-                    <tr>
-                        <td>“∫ f(x)dx” (sem limites)</td>
-                        <td>Tabela de primitivas</td>
-                        <td>Identifica forma u, u′ e aplica linha certa, +C</td>
-                    </tr>
-                    <tr>
-                        <td>“∫ₐᵇ f(x)dx” ou “área”</td>
-                        <td>Teorema Fundamental + fórmula de área</td>
-                        <td>Encontra F, faz F(b)−F(a); em área, usa “cima−baixo”</td>
-                    </tr>
-                </table>
-            </div>
+        <p><strong>Quando usar:</strong> Pedidos do tipo "encontra uma primitiva de f(x)" ou como passo para integrais definidas.</p>
+        <p><strong>Porquê:</strong> É o inverso da derivada; reconhecer u e u′ simplifica a primitivação via substituição.</p>
+
+        <p><strong>Exemplos:</strong></p>
+        <ul>
+            <li>∫ 2x dx = x² + C.</li>
+            <li>∫ 2x e<sup>x²</sup> dx → u = x², du = 2x dx → ∫ eᵘ du = e<sup>x²</sup> + C.</li>
+        </ul>
+    </div>
+
+    <!-- 9) Integração por Partes -->
+    <div class="block block-key">
+        <div class="block-title">9️⃣ Integração por Partes</div>
+
+        <div class="formula-box">
+            ∫ u dv = u v − ∫ v du
+        </div>
+
+        <p><strong>Quando usar:</strong> Quando tens um produto onde derivar uma parte e integrar outra simplifica (polinómio·exponencial, polinómio·trig).</p>
+        <p><strong>Porquê:</strong> Transforma um integral difícil num mais simples ao transferir derivação/integração entre fatores.</p>
+
+        <p><strong>Exemplo:</strong></p>
+        <ul>
+            <li>∫ x e<sup>x</sup> dx: toma u = x, dv = e<sup>x</sup> dx → du = dx, v = e<sup>x</sup>.</li>
+            <li>Resultado: x e<sup>x</sup> − ∫ e<sup>x</sup> dx = e<sup>x</sup>(x − 1) + C.</li>
+        </ul>
+    </div>
+
+    <!-- 10) Frações Parciais -->
+    <div class="block block-key">
+        <div class="block-title">🔟 Frações Parciais (nota prática)</div>
+
+        <p><strong>Quando usar:</strong> Integrais de racionais P(x)/D(x) com grau(P) < grau(D) ou depois de dividir quando grau(P) ≥ grau(D).</p>
+        <p><strong>Porquê:</strong> Decompõe o integrando em termos simples (pólos lineares/quadráticos) cuja primitiva é direta.</p>
+
+        <p><strong>Ideia:</strong> ∫ 1/(x² − 1) dx = ∫ [A/(x−1) + B/(x+1)] dx → A ln|x−1| + B ln|x+1| + C.</p>
+    </div>
+
+    <!-- 11) Integrais Definidas e Teorema Fundamental -->
+    <div class="block block-key">
+        <div class="block-title">1️⃣1️⃣ Integrais Definidas e Teorema Fundamental</div>
+
+        <div class="formula-box">
+            Se F é primitiva de f e f contínua em [a,b]: ∫_a^b f(x) dx = F(b) − F(a)
+        </div>
+
+        <p><strong>Quando usar:</strong> calcular integrais com limites ou áreas entre curvas.</p>
+        <p><strong>Porquê:</strong> A integral definida é dada pela diferença de uma primitiva nos extremos; é a ponte entre derivada e integral.</p>
+
+        <p><strong>Exemplo integral simples:</strong> ∫_0^1 3x² dx → primitiva F(x) = x³ → F(1) − F(0) = 1.</p>
+
+        <p><strong>Exemplo área:</strong> Área entre g(x)=x e f(x)=x², em [0,1]: ∫_0^1 (x − x²) dx = [x²/2 − x³/3]_0^1 = 1/6.</p>
+    </div>
+
+    <!-- 12) Propriedades úteis -->
+    <div class="block block-key">
+        <div class="block-title">1️⃣2️⃣ Propriedades e truques rápidos</div>
+        <ul>
+            <li><strong>Linearidade:</strong> ∫(α f + β g) = α ∫ f + β ∫ g — usamos para separar integrais.</li>
+            <li><strong>Partir intervalos:</strong> ∫_a^b = ∫_a^c + ∫_c^b — útil para singularidades ou mudanças de sinal.</li>
+            <li><strong>Par/ímpar:</strong> f par → ∫_{−a}^a f = 2 ∫_0^a f; f ímpar → ∫_{−a}^a f = 0 — economiza trabalho.</li>
+            <li><strong>L'Hôpital:</strong> só em 0/0 ou ∞/∞; deriva cima e baixo.</li>
+        </ul>
+    </div>
+
+    <!-- RESUMO -->
+    <div class="section-title">⚡ Resumo — Como ler o formulário em exame</div>
+    <div class="block block-what">
+        <table class="comparison-table">
+            <tr>
+                <th>Se a pergunta fala de…</th>
+                <th>Olhas para…</th>
+                <th>Primeiro passo</th>
+            </tr>
+            <tr>
+                <td>Reta tangente</td>
+                <td>Equação da reta tangente</td>
+                <td>Calcula f(a) e f′(a) → aplica y = f(a) + f′(a)(x−a)</td>
+            </tr>
+            <tr>
+                <td>Derivar f(x)</td>
+                <td>Tabela + regras</td>
+                <td>Identifica blocos e aplica tabela/regra (cadeia se houver interior)</td>
+            </tr>
+            <tr>
+                <td>Máximos / mínimos</td>
+                <td>Pontos críticos + f''</td>
+                <td>Resolve f′(x)=0 e usa f'' ou quadro de sinais</td>
+            </tr>
+            <tr>
+                <td>Limite 0/0 ou ∞/∞</td>
+                <td>L'Hôpital / Cauchy</td>
+                <td>Confirma indeterminação → deriva cima e baixo</td>
+            </tr>
+            <tr>
+                <td>∫ f(x) dx (indefinida)</td>
+                <td>Tabela de primitivas</td>
+                <td>Procura u e u′; aplica ou tenta partes/substituição</td>
+            </tr>
+            <tr>
+                <td>∫_a^b f(x) dx / Área</td>
+                <td>Barrow + (cima − baixo)</td>
+                <td>Encontra primitiva F e calcula F(b) − F(a)</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="tip-box" style="margin-top:18px;">
+        <strong>Última dica:</strong>
+        <ul>
+            <li>Segue sempre: <em>ler enunciado → identificar tipo → escolher linha do formulário → escrever fórmula genérica → substituir e calcular</em>.</li>
+            <li>Praticar com 1 exercício por bloco — isso fixa mais do que decorar as fórmulas. BORA PASSAR A ANÁLISE CARALHOOOOOO</li>
+        </ul>
+    </div>
+</div>
+
         </div>
     </div>
 
